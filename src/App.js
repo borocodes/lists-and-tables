@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import {GroceryList} from "./GroceryList"
+
+const todos = [
+  { completed: false, description: "Finish the Lists & Tables checkpoint" },
+  { completed: false, description: "Clean my desk" },
+  { completed: false, description: "Make lunch" },
+];
 
 function App() {
+  const rows = todos.map(({ completed, description }, index) => (
+    <tr key={index}>
+      <td>{description}</td>
+      <td>{completed ? "Yes" : "No"}</td>
+    </tr>
+  ));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Completed?</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
   );
 }
 
